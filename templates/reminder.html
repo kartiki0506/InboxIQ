@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Reminder - InboxIQ</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .back {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .back a {
+            text-decoration: none;
+            color: #667eea;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>⏰ Set Reminder</h2>
+
+    <form method="POST">
+        <label>Select Email:</label>
+        <select name="email">
+            {% for email in emails %}
+            <option value="{{ email.subject }}">{{ email.subject }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Set Time:</label>
+
+        <div style="display:flex; gap:10px; margin-top:5px;">
+            <input type="number" name="hour" placeholder="HH" min="1" max="12" required>
+            <input type="number" name="minute" placeholder="MM" min="0" max="59" required>
+
+            <select name="ampm">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select>
+        </div>
+
+        <button type="submit">Set Reminder</button>
+    </form>
+
+    <div class="back">
+        <a href="/dashboard">← Back to Dashboard</a>
+    </div>
+</div>
+
+</body>
+</html>

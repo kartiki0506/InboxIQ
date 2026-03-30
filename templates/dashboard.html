@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InboxIQ Dashboard</title>
+
+    <style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        background: #f8fafc;
+    }
+
+    .sidebar {
+        width: 240px;
+        background: #e0e7ff;
+        color: #1e293b;
+        height: 100vh;
+        padding: 20px;
+    }
+
+    .sidebar h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .sidebar a {
+        display: block;
+        padding: 12px;
+        margin: 6px 0;
+        color: #334155;
+        text-decoration: none;
+        border-radius: 10px;
+    }
+
+    .sidebar a:hover {
+        background: #c7d2fe;
+    }
+
+    .content {
+        flex: 1;
+        padding: 25px;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        color: #1e293b;
+    }
+
+    .card {
+        background: white;
+        padding: 15px;
+        border-radius: 14px;
+        margin-bottom: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        border-left: 6px solid transparent;
+    }
+
+    .Internship {
+        border-left-color: #86efac;  /* pastel green */
+    }
+
+    .Event {
+        border-left-color: #93c5fd;  /* pastel blue */
+    }
+
+    .Academic {
+        border-left-color: #d8b4fe;  /* pastel purple */
+    }
+
+    .Spam {
+        border-left-color: #fca5a5;  /* pastel red */
+    }
+
+    .General {
+        border-left-color: #e5e7eb;  /* soft grey */
+    }
+
+    .email-title {
+        font-weight: 600;
+        font-size: 16px;
+        color: #0f172a;
+    }
+
+    .email-sender {
+        font-size: 13px;
+        color: #64748b;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>📧 InboxIQ</h2>
+    <a href="/dashboard">All Emails</a>
+    <a href="/dashboard?filter=Internship">Internships</a>
+    <a href="/dashboard?filter=Event">Events</a>
+    <a href="/dashboard?filter=Academic">Academic</a>
+    <a href="/dashboard?filter=General">General</a>
+    <a href="/reminder">⏰ Set Reminder</a>
+</div>
+
+<div class="content">
+    <h1>Email Dashboard</h1>
+
+    {% for email in emails %}
+    <div class="card {{ email.category }}">
+        <div class="email-title">{{ email.subject }}</div>
+        <div class="email-sender">{{ email.sender }}</div>
+        <div>Category: {{ email.category }}</div>
+    </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
